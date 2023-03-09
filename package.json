@@ -1,6 +1,7 @@
 {
   "name": "images-gallery",
   "version": "0.1.0",
+  "homepage": "https://MadhuL081198.github.io/images-gallery",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
@@ -21,6 +22,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,6 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "gh-pages": "^5.0.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.41",
     "postcss": "^8.4.21",
