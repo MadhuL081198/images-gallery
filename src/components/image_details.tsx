@@ -4,6 +4,8 @@ import heartRed from '../images/heart_red.svg';
 import { convertBytesToMB } from './image_tile';
 import { InformationRow, InformationTable } from './information_table';
 import moment from 'moment';
+import { deleteImage, toggleFavouriteImage } from '../redux/imagesSlice';
+import { useDispatch } from 'react-redux';
 
 export interface IUser{
     id: string,
@@ -41,7 +43,7 @@ export const changeDimensionsTotext = (dimentions:ImageDetailsProps["dimensions"
 }
 
 export default function ImageDetails (props: ImageDetailsProps) {
-    
+    const dispatch = useDispatch();
     function FavoritedIcon(props:any){
         if (props.favourite){
             return <img className='h-5 w-5 mt-4' src={heartRed} alt="favorite" />
@@ -58,7 +60,7 @@ export default function ImageDetails (props: ImageDetailsProps) {
             <span className='py-2 font-semibold'>
                 {props.filename}
             </span>
-            <span>
+            <span onClick={() => dispatch(toggleFavouriteImage(props.id))}>
                 <FavoritedIcon favourite={props.favorited}/>
             </span>
         </div>
@@ -82,7 +84,7 @@ export default function ImageDetails (props: ImageDetailsProps) {
         </div>
 
         <div className='flex justify-center'>
-            <button className='px-4 py-2 border-2 border-gray-200 w-3/4 hover:bg-red-500 rounded-md hover:text-white hover:border-red-600'>Delete</button>
+            <button onClick={() => dispatch(deleteImage(props.id))} className='px-4 py-2 border-2 border-gray-200 w-3/4 hover:bg-red-500 rounded-md hover:text-white hover:border-red-600'>Delete</button>
         </div>
       
     </div>
