@@ -6,7 +6,7 @@ export interface HeaderProps {
 
 export function Header (props: HeaderProps) {
   return (
-    <div className='flex flex-row sticky top-0 p-4 m-1 bg-slate-200 rounded-md'>
+    <div className='flex flex-row sticky top-0 py-4 px-12 m-1 font-bold text-2xl rounded-md'>
         {props.title}
     </div>
   );

@@ -54,12 +54,12 @@ function App() {
       <div className='basis-2/3'>
         <Header title='Photos'></Header>
 
-        <Tabs>
-          <TabList>
-            <Tab>Recently Added</Tab>
-            <Tab onClick={() => dispatch(getFavouriteImages())}>Favorited</Tab>
+        <Tabs className="mx-12 bg-slate-100">
+          <TabList className="bg-slate-100 flex flex-row border-b-2 border-gray-300">
+            <Tab className="bg-slate-100 px-2 py-2 text-gray-600 hover:text-blue-600 font-semibold focus:outline-none focus:border-b-2 focus:text-blue-600 focus:border-blue-600">Recently Added</Tab>
+            <Tab className="bg-slate-100 px-2 py-2 text-gray-600 hover:text-blue-600 font-semibold focus:outline-none focus:border-b-2 focus:text-blue-600 focus:border-blue-600" onClick={() => dispatch(getFavouriteImages())}>Favorited</Tab>
           </TabList>
-          <TabPanel>
+          <TabPanel className="">
             <div className='flex flex-wrap justify-center'>
               {
                 allImages.map((image, i) => {
@@ -71,7 +71,7 @@ function App() {
 
             </div>
           </TabPanel>
-          <TabPanel>
+          <TabPanel className="">
             <div className='flex flex-wrap justify-center'>
               {
                 favoritedImages.map((image, i) => {
