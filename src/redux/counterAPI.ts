@@ -4,3 +4,5 @@ export function fetchCount(amount = 1) {
     setTimeout(() => resolve({ data: amount }), 500)
   );
 }
+
+// create new function for api call to the images

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import heart from '../images/heart.svg';
+import heartRed from '../images/heart_red.svg';
 import { convertBytesToMB } from './image_tile';
 import { InformationRow, InformationTable } from './information_table';
 import moment from 'moment';
@@ -6,13 +8,13 @@ import moment from 'moment';
 export interface IUser{
     id: string,
     name: string,
-    url: string
+    avatar: string
 }
 export interface ImageDetailsProps {
     id: string,
     url: string,
     filename: string,
-    description: string,
+    description?: string,
     uploadedBy: string,
     createdAt: string,
     updatedAt: string,
@@ -25,7 +27,7 @@ export interface ImageDetailsProps {
         width: number
     },
     sizeInBytes: number
-    sharedWith: IUser[] | [],
+    sharedWith?: IUser[] | [],
     favorited: boolean
 }
 
@@ -38,20 +40,26 @@ export const changeDimensionsTotext = (dimentions:ImageDetailsProps["dimensions"
     return dimentions.height.toString() + " x " + dimentions.width.toString()
 }
 
-
-
 export default function ImageDetails (props: ImageDetailsProps) {
+    
+    function FavoritedIcon(props:any){
+        if (props.favourite){
+            return <img className='h-5 w-5 mt-4' src={heartRed} alt="favorite" />
+        }else{
+            return <img className='h-5 w-5 mt-4' src={heart} alt="favorite" />
+        }
+    }
   return (
     <div className='flex flex-col'>
         <div className='flex justify-center'>
-        <img className='h-48 w-auto border-1 border-blue-400 selection:border-blue-600 rounded-md' src={props.url} alt={props.filename} />
+        <img className='object-fill h-48 w-auto border-1 border-blue-400 selection:border-blue-600 rounded-md' src={props.url} alt={props.filename} />
         </div>
         <div className='flex flex-row justify-between'>
             <span className='py-2 font-semibold'>
                 {props.filename}
             </span>
             <span>
-                :)
+                <FavoritedIcon favourite={props.favorited}/>
             </span>
         </div>
         <div className='text-md text-gray-500'>
